@@ -12,8 +12,10 @@ class Simon
   def play
     until self.game_over
       take_turn
+      sleep 0.75
       system("clear")
     end
+
     game_over_message
     reset_game
   end
@@ -35,7 +37,7 @@ class Simon
       puts color 
       sleep 0.75
       system("clear")
-      sleep 0.25
+      sleep 0.75
     end
   end
 
@@ -63,3 +65,6 @@ class Simon
     self.seq = []
   end
 end
+
+g = Simon.new
+g.play
