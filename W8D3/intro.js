@@ -1,17 +1,73 @@
 // Phase I
 
-function madLib(verb, adj, noun) {
-  console.log(`We shall ${verb.toUpperCase()} the ${adj.toUpperCase()} ${noun.toUpperCase()}.`);
+function mysteryScoping1() {
+  var x = 'out of block';
+  if (true) {
+    var x = 'in block';
+    console.log(x);
+  }
+  console.log(x);
 }
 
-madLib('make', 'best', 'guac'); // 'Whe shall MAKE the BEST GUAC'
+// mysteryScoping1();
+
+function mysteryScoping2() {
+  const x = 'out of block';
+  if (true) {
+    const x = 'in block';
+    console.log(x);
+  }
+  console.log(x);
+}
+
+// mysteryScoping2();
+
+function mysteryScoping3() {
+  const x = 'out of block'; 
+  if (true) {
+    var x = 'in block';
+    console.log(x);
+  }
+  console.log(x);
+}
+
+// mysteryScoping3();
+
+function mysteryScoping4() {
+  let x = 'out of block';
+  if (true) {
+    let x = 'in block';
+    console.log(x);
+  }
+  console.log(x);
+}
+
+// mysteryScoping4();
+
+function mysteryScoping5() {
+  let x = 'out of block'; 
+  if (true) {
+    let x = 'in block';
+    console.log(x);
+  }
+  let x = 'out of block again';
+  console.log(x);
+}
+
+// mysteryScoping5();
+
+function madLib(verb, adj, noun) {
+  return `We shall ${verb.toUpperCase()} the ${adj.toUpperCase()} ${noun.toUpperCase()}.`;
+}
+
+console.log(madLib('make', 'best', 'guac')); //'Whe shall MAKE the BEST GUAC'
 
 function isSubstring(searchString, subString) {
-  console.log(searchString.includes(subString));
+  return searchString.includes(subString);
 }
 
-isSubstring("time to program", "time"); //true
-isSubstring("Jump for joy", "joys"); // false
+console.log(isSubstring("time to program", "time")); //true
+console.log(isSubstring("Jump for joy", "joys")); //false
 
 // Phase II
 
@@ -30,10 +86,9 @@ function fizzBuzz(arr) {
 console.log(fizzBuzz([1, 2, 3, 4, 5, 6, 15])); //[3. 5. 6]
 
 function isPrime(num) {
-  if (num < 2) { return false; }
-
-  for (i = 2; i < num; i++) {
-    if (num % i == 0) {
+  if (num < 2) return false;
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
       return false;
     }
   }
@@ -46,27 +101,19 @@ console.log(isPrime(10)); //false
 console.log(isPrime(15485863)); //true
 console.log(isPrime(3548563)); //false
 
-function firstNPrimes(n) {
-  let primes = [];
+function sumOfNPrimes(n) {
+  count = 0;
+  sum = 0;
 
   let i = 2;
-  while (primes.length < n) {
+  while (count < n) {
     if (isPrime(i)) {
-      primes.push(i);
+      count += 1;
+      sum += i;
     }
     i++;
   }
 
-  return primes;
-}
-
-console.log(firstNPrimes(3)); // [2, 3, 5, 7]
-
-function sumOfNPrimes(n) {
-  let sum = 0;
-  let primes = firstNPrimes(n);
-  primes.forEach(el => { sum += el; });
-  
   return sum;
 }
 
